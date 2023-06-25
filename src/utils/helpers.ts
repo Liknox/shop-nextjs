@@ -1,5 +1,5 @@
-export const formatter = new Intl.NumberFormat("en-US", {
+export const formatter = new Intl.NumberFormat("uk-UA", {
 	style: "currency",
-	currency: "USD",
+	currency: "UAH",
 	minimumFractionDigits: 2,
 })
