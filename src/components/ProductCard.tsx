@@ -9,7 +9,7 @@ function ProductCard({ product }: any) {
 
 	return (
 		<div>
-			<Link href={`/product/${handle}`}>
+			<Link href={`/products/${handle}`}>
 				<div className="group">
 					<div className="w-full bg-gray-200 rounded-3xl overflow-hidden">
 						<div className="relative group-hover:opacity-75 h-72">
