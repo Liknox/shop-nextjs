@@ -51,11 +51,78 @@ export async function getProductsInCollection() {
             }
          }
       }
-   }
-   `
+   }`
 
 	const response = await ShopifyData(query)
 	const allProducts = response.data.collectionByHandle.products.edges ? response.data.collectionByHandle.products.edges : []
 
 	return allProducts
+}
+
+export async function getAllProducts() {
+	const query = `
+   {
+      products(first: 250) {
+         edges {
+            node {
+               handle
+               id
+            }
+         }
+      }
+   }`
+
+   const response = await ShopifyData(query)
+   const slugs = response.data.products.edges ? response.data.products.edges : []
+
+   return slugs
+}
+
+export async function getProduct(handle: any) {
+   const query = `
+   {
+      productByHandle(handle: "${handle}") {
+         id
+         title
+         handle
+         description
+         images(first: 5) {
+            edges{
+               node {
+                  url
+                  altText
+               }
+            }
+         }
+         options {
+            name
+            values
+            id
+         }
+         variants(first: 25) {
+            edges{
+               node {
+                  selectedOptions {
+                     name
+                     value
+                  }
+                  image {
+                     url
+                     altText
+                  }
+                  title
+                  id
+                  price {
+                     amount
+                  }
+               }
+            }
+         }
+      }
+   }`
+
+   const response = await ShopifyData(query)
+   const product = response.data.productByHandle ? response.data.productByHandle : []
+
+   return product
 }

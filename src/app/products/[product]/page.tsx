@@ -1,5 +1,6 @@
-function Product({ params }: { params: { product: string } }) {
-	return <div>Id {params.product}</div>
-}
+import { getProduct } from "../../../../lib/shopify"
 
-export default Product
+export default async function Product({ params }: { params: { product: string } }) {
+	const product = await getProduct(params.product)
+	return <div>{product.title}</div>
+}
