@@ -1,4 +1,5 @@
 import Image from "next/image"
+import ProductForm from "./ProductForm"
 
 function ProductContent({ product }: any) {
 	return (
@@ -13,6 +14,7 @@ function ProductContent({ product }: any) {
 					/>
 				</div>
 			</div>
+			<ProductForm />
 		</div>
 	)
 }
