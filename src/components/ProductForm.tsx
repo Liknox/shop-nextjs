@@ -1,7 +1,8 @@
 "use client"
 
-import { formatter } from "@/utils/helpers"
 import { useContext, useState } from "react"
+import ProductOptions from "./ProductOptions"
+import { formatter } from "@/utils/helpers"
 
 function ProductForm({ product }: any) {
 	const allVariantOptions = (product.variants.edges as any[])?.map(variant => {
@@ -36,11 +37,28 @@ function ProductForm({ product }: any) {
 	const [selectedVariant, setSelectedVariant] = useState(allVariantOptions[0])
 	const [selectedOptions, setSelectedOptions] = useState(defaultValues)
 
+	if (product.options[0].name === "Size") product.options.reverse()
+
+	function setOptions(name: any, value: any) {
+		setSelectedOptions((prevState: any) => {
+			return { ...prevState, [name]: value }
+		})
+	}
+
 	return (
 		<div className="rounded-2xl p-4 shadow-lg flex flex-col w-full md:w-1/3">
 			<h2 className="text-2xl font-bold">{product.title}</h2>
 			<span className="pb-6">{formatter.format(product.variants.edges[0].node.price.amount)}</span>
-			{(product.options as any[]).map(({ name, values }) => 123)}
+			{(product.options as any[]).map(({ name, values }) => (
+				<ProductOptions
+					key={`key-${name}`}
+					name={name}
+					values={values}
+					selectedOptions={selectedOptions}
+					setOptions={setOptions}
+				/>
+			))}
+         <button className="bg-black rounded-lg text-white px-2 py-3 hover:bg-gray-800">Add To Cart</button>
 		</div>
 	)
 }
