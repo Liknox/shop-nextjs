@@ -9,7 +9,7 @@ function Nav() {
 						<span className="text-lg pt-1 font-bold">Shopify + Next.js</span>
 					</div>
 				</Link>
-            <a className="text-md font-bold cursor-pointer">Cart</a>
+				<a className="text-md font-bold cursor-pointer">Cart</a>
 			</div>
 		</header>
 	)

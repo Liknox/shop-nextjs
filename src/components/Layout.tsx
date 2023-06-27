@@ -6,7 +6,7 @@ function Layout({ children }: { children: ReactNode }) {
 		<div className="flex flex-col justify-between min-h-screen">
 			<Nav />
 			<main>{children}</main>
-         <footer>Footer</footer>
+			<footer>Footer</footer>
 		</div>
 	)
 }
