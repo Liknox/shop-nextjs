@@ -54,7 +54,9 @@ export async function getProductsInCollection() {
    }`
 
 	const response = await ShopifyData(query)
-	const allProducts = response.data.collectionByHandle.products.edges ? response.data.collectionByHandle.products.edges : []
+	const allProducts = response.data.collectionByHandle.products.edges
+		? response.data.collectionByHandle.products.edges
+		: []
 
 	return allProducts
 }
@@ -72,14 +74,14 @@ export async function getAllProducts() {
       }
    }`
 
-   const response = await ShopifyData(query)
-   const slugs = response.data.products.edges ? response.data.products.edges : []
+	const response = await ShopifyData(query)
+	const slugs = response.data.products.edges ? response.data.products.edges : []
 
-   return slugs
+	return slugs
 }
 
 export async function getProduct(handle: any) {
-   const query = `
+	const query = `
    {
       productByHandle(handle: "${handle}") {
          id
@@ -121,8 +123,62 @@ export async function getProduct(handle: any) {
       }
    }`
 
-   const response = await ShopifyData(query)
-   const product = response.data.productByHandle ? response.data.productByHandle : []
+	const response = await ShopifyData(query)
+	const product = response.data.productByHandle ? response.data.productByHandle : []
 
-   return product
+	return product
+}
+
+export async function createCheckout(id: any, quantity: any) {
+	const query = `
+   mutation {
+      checkoutCreate (input: {
+         lineItems: [{variantId: "${id}", quantity: ${quantity}}]
+      }) {
+         checkout {
+            id
+            webUrl
+         }  
+      }
+   }`
+
+	const response = await ShopifyData(query)
+
+	const checkout = response.data.checkoutCreate.checkout ? response.data.checkoutCreate.checkout : []
+	return checkout
+}
+
+export async function updateCheckout(id: any, lineItems: any[]) {
+	const lineItemsObject = lineItems.map(item => {
+		return `{
+         variantId: "${item.id}",
+         quantity: ${item.variantQuantity}
+      }`
+	})
+
+	const query = `
+   mutation {
+      checkoutLineItemsReplace(lineItems: [${lineItemsObject}], checkoutId: "${id}") {
+         checkout {
+            id
+            webUrl
+            lineItems(first: 25) {
+               edges {
+                  node {
+                     id
+                     title
+                     quantity
+                  }
+               }
+            }
+         }  
+      }
+   }`
+
+	const response = await ShopifyData(query)
+	const checkout = response.data.checkoutLineItemsReplace.checkout
+		? response.data.checkoutLineItemsReplace.checkout
+		: []
+
+	return checkout
 }

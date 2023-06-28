@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google"
 import Layout from "@/components/Layout"
+import ShopProvider from "@/context/shopContext"
 
 import "./globals.css"
 
@@ -11,11 +12,13 @@ export const metadata = {
 	other: { created_By: "Nazar_Koval aka Liknox" },
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: any) {
 	return (
 		<html lang="en">
 			<body className={inter.className}>
-				<Layout>{children}</Layout>
+				<ShopProvider>
+					<Layout>{children}</Layout>
+				</ShopProvider>
 			</body>
 		</html>
 	)
