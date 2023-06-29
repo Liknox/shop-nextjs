@@ -11,8 +11,20 @@ function shopContext({ children }: any) {
 	const [checkoutId, setCheckoutId] = useState<any>("")
 	const [checkoutUrl, setCheckoutUrl] = useState<any>("")
 
-   console.log(cart)
-   
+	useEffect(() => {
+		if (localStorage.checkout_id) {
+			const cartObject = JSON.parse(localStorage.checkout_id)
+
+			if (cartObject[0].id) {
+				setCart([cartObject[0]])
+			} else if (cartObject[0].length > 0) {
+				setCart(...[cartObject[0]])
+			}
+
+			setCheckoutId(cartObject[1].id)
+			setCheckoutUrl(cartObject[1].webUrl)
+		}
+	}, [])
 
 	async function addToCart(newItem: any) {
 		if (cart.length === 0) {
