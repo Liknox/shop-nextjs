@@ -33,7 +33,7 @@ function ProductContent({ product }: any) {
 						className="h-96 rounded-2xl "
 						modules={[Navigation, Pagination]}
 						spaceBetween={0}
-                  loop
+						loop
 						navigation
 						pagination={{ clickable: true }}
 						slidesPerView={1}

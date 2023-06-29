@@ -21,7 +21,9 @@ function Nav() {
 						<span className="text-lg pt-1 font-bold">Shopify + Next.js</span>
 					</div>
 				</Link>
-				<a onClick={() => setCartOpen(!cartOpen)} className="text-md font-bold cursor-pointer">Cart ({cartQuantity})</a>
+				<a onClick={() => setCartOpen(!cartOpen)} className="text-md font-bold cursor-pointer">
+					Cart ({cartQuantity})
+				</a>
 				<MiniCart cart={cart} />
 			</div>
 		</header>
