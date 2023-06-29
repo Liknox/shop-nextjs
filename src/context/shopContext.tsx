@@ -27,6 +27,8 @@ function shopContext({ children }: any) {
 	}, [])
 
 	async function addToCart(newItem: any) {
+		setCartOpen(true)
+
 		if (cart.length === 0) {
 			setCart([newItem])
 
@@ -53,8 +55,22 @@ function shopContext({ children }: any) {
 		}
 	}
 
+	async function removeCartItem(itemToRemove: any) {
+		if (cart.length === 1) {
+			setCartOpen(false)
+		}
+
+		const updatedCart = cart.filter((item: any) => item.id !== itemToRemove)
+
+		setCart(updatedCart)
+
+		const newCheckout = await updateCheckout(checkoutId, updatedCart)
+
+		localStorage.setItem("checkout_id", JSON.stringify([updatedCart, newCheckout]))
+	}
+
 	return (
-		<CartContext.Provider value={{ cart, cartOpen, setCartOpen, addToCart, checkoutUrl }}>
+		<CartContext.Provider value={{ cart, cartOpen, setCartOpen, addToCart, checkoutUrl, removeCartItem }}>
 			{children}
 		</CartContext.Provider>
 	)

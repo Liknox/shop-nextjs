@@ -1,14 +1,14 @@
 import { Fragment, useContext, useRef } from "react"
 import { Dialog, Transition } from "@headlessui/react"
 import Image from "next/image"
-import { XMarkIcon } from '@heroicons/react/24/outline'
+import { XMarkIcon } from "@heroicons/react/24/outline"
 import { CartContext } from "@/context/shopContext"
 import { formatter } from "@/utils/helpers"
 
 export default function MiniCart({ cart }: any) {
-   const cancelButtonRef = useRef(null)
-   
-	const { cartOpen, setCartOpen, checkoutUrl } = useContext(CartContext)
+	const cancelButtonRef = useRef(null)
+
+	const { cartOpen, setCartOpen, checkoutUrl, removeCartItem } = useContext(CartContext)
 
 	let cartTotal = 0
 
@@ -19,7 +19,7 @@ export default function MiniCart({ cart }: any) {
 	return (
 		<Transition.Root show={cartOpen} as={Fragment}>
 			<Dialog
-            initialFocus={cancelButtonRef}
+				initialFocus={cancelButtonRef}
 				as="div"
 				className="relative z-50"
 				onClose={() => {
@@ -59,13 +59,13 @@ export default function MiniCart({ cart }: any) {
 												</Dialog.Title>
 												<div className="ml-3 flex h-7 items-center">
 													<button
-                                          ref={cancelButtonRef}
+														ref={cancelButtonRef}
 														type="button"
 														className="-m-2 p-2 text-gray-400 hover:text-gray-500"
 														onClick={() => setCartOpen(false)}
 													>
 														<span className="sr-only">Close panel</span>
-                                          <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+														<XMarkIcon className="h-6 w-6" aria-hidden="true" />
 													</button>
 												</div>
 											</div>
@@ -107,6 +107,9 @@ export default function MiniCart({ cart }: any) {
 
 																		<div className="flex">
 																			<button
+																				onClick={() =>
+																					removeCartItem(product.id)
+																				}
 																				type="button"
 																				className="font-medium text-gray-500 hover:text-gray-800"
 																			>
