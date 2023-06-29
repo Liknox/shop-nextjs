@@ -10,7 +10,6 @@ import "swiper/swiper.min.css"
 import "swiper/css/navigation"
 import "swiper/css/pagination"
 function ProductContent({ product }: any) {
-	const imageInfo = product.images.edges[0].node
 	const images: any[] = []
 
 	product.images.edges.map((image: any, i: any) => {
@@ -35,18 +34,9 @@ function ProductContent({ product }: any) {
 							className="h-96 rounded-2xl "
 							modules={[Navigation, Pagination]}
 							spaceBetween={0}
-							loop
 							navigation
-							pagination={{ clickable: true }}
+							pagination={{ clickable: true, dynamicBullets: true}}
 							slidesPerView={1}
-							effect={"coverflow"}
-							grabCursor={false}
-							coverflowEffect={{
-								rotate: 0,
-								stretch: 0,
-								depth: 100,
-								modifier: 2.5,
-							}}
 						>
 							{images}
 						</Swiper>
