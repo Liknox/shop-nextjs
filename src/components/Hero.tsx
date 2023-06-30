@@ -1,6 +1,10 @@
-import Link from "next/link"
+"use client"
 
 function Hero() {
+	const scrollToCertainPoint = () => {
+		window.scrollTo({ top: window.innerHeight, behavior: "smooth" })
+	}
+
 	return (
 		<div
 			className="mx-auto max-w-7xl px-4 text-center flex items-center justify-items-center -mt-14"
@@ -17,16 +21,16 @@ function Hero() {
 					Build the eCommerce Revolution.
 				</h2>
 				<div className="mt-5 max-w-md mx-auto flex justify-center items-center md:mt-8">
-					<Link href="#">
+					<button onClick={scrollToCertainPoint}>
 						<div className="inline-flex items-center justify-center h-12 px-6 mr-6 font-medium py-3 border-transparent rounded-md text-white bg-gray-900 hover:bg-gray-800">
 							Products
 						</div>
-					</Link>
-					<Link href="#">
+					</button>
+					<a href="https://github.com/Liknox/shop-nextjs" target="_blank" rel="noreferrer">
 						<div className="inline-flex items-center font-semibold text-gray-900 hover:text-gray-800">
-							Repo
+							GitHub Repo
 						</div>
-					</Link>
+					</a>
 				</div>
 			</div>
 		</div>

@@ -1,5 +1,3 @@
-"use client"
-
 import { useContext, useState } from "react"
 import ProductOptions from "./ProductOptions"
 import { CartContext } from "@/context/shopContext"
