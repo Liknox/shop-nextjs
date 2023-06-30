@@ -18,8 +18,13 @@ function Footer() {
 						</div>
 					))}
 				</nav>
-				<p className="mt-8 text-center text-gray-400">
-					&copy; {new Date().getFullYear()} Shopify Next.js 13, All rights reserved.
+				<p className="mt-8 text-center text-gray-500">
+					&copy; {new Date().getFullYear()} Shopify Next.js 13. All rights reserved.{" "}
+					<span className="text-gray-500">
+						<a href="https://github.com/Liknox/shop-nextjs" target="_blank" rel="noreferrer">
+							Repo.
+						</a>
+					</span>
 				</p>
 			</div>
 		</footer>
