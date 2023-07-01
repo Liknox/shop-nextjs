@@ -1,7 +1,7 @@
 "use client"
 
 function Hero() {
-	const scrollToCertainPoint = () => {
+	const scrollToCertainPoint = (): void => {
 		window.scrollTo({ top: window.innerHeight, behavior: "smooth" })
 	}
 

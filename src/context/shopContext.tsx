@@ -1,15 +1,16 @@
 "use client"
 import { createContext, useState, useEffect } from "react"
 import { createCheckout, updateCheckout } from "../../lib/shopify"
+import { ICart, IChildrenProps, IContext } from "@/types"
 
-const CartContext = createContext<any>(null)
+const CartContext = createContext<IContext | null>(null)
 
 /* eslint-disable react-hooks/rules-of-hooks */
-function shopContext({ children }: any) {
-	const [cart, setCart] = useState<any>([])
+function shopContext({ children }: IChildrenProps) {
+	const [cart, setCart] = useState<ICart[] | []>([])
 	const [cartOpen, setCartOpen] = useState<boolean>(false)
-	const [checkoutId, setCheckoutId] = useState<any>("")
-	const [checkoutUrl, setCheckoutUrl] = useState<any>("")
+	const [checkoutId, setCheckoutId] = useState<string>("")
+	const [checkoutUrl, setCheckoutUrl] = useState<string>("")
 
 	useEffect(() => {
 		if (localStorage.checkout_id) {
@@ -26,7 +27,7 @@ function shopContext({ children }: any) {
 		}
 	}, [])
 
-	async function addToCart(newItem: any) {
+	async function addToCart(newItem: ICart) {
 		setCartOpen(true)
 
 		if (cart.length === 0) {
@@ -40,7 +41,7 @@ function shopContext({ children }: any) {
 			localStorage.setItem("checkout_id", JSON.stringify([newItem, checkout]))
 		} else {
 			let newCart = [...cart]
-			cart.map((item: any) => {
+			cart.map(item => {
 				if (item.id === newItem.id) {
 					item.variantQuantity++
 					newCart = [...cart]
@@ -55,12 +56,12 @@ function shopContext({ children }: any) {
 		}
 	}
 
-	async function removeCartItem(itemToRemove: any) {
+	async function removeCartItem(itemToRemove: string) {
 		if (cart.length === 1) {
 			setCartOpen(false)
 		}
 
-		const updatedCart = cart.filter((item: any) => item.id !== itemToRemove)
+		const updatedCart = cart.filter(item => item.id !== itemToRemove)
 
 		setCart(updatedCart)
 

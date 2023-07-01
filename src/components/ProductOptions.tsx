@@ -1,13 +1,13 @@
 import { IIteration } from "@/types"
 
-interface IProductOptions {
+interface IProductOptionsProps {
    name: string
    values: string[]
    selectedOptions: IIteration
    setOptions: (name: string, value: string) => void
 }
 
-function ProductOptions({ name, values, selectedOptions, setOptions }: IProductOptions) {
+function ProductOptions({ name, values, selectedOptions, setOptions }: IProductOptionsProps) {
 	return (
 		<fieldset className="mt-3">
 			<legend className="text-xl font-semibold">{name}</legend>

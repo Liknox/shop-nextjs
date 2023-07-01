@@ -1,3 +1,5 @@
+import { IProduct } from "@/types"
+
 const domain = process.env.SHOPIFY_STORE_DOMAIN
 const storefrontAccessToken = process.env.SHOPIFY_STOREFRONT_ACCESSTOKEN
 
@@ -61,7 +63,7 @@ export async function getProductsInCollection() {
 	return allProducts
 }
 
-export async function getProduct(handle: string) {
+export async function getProduct(handle: string): Promise<IProduct | any[]> {
 	const query = `
    {
       productByHandle(handle: "${handle}") {

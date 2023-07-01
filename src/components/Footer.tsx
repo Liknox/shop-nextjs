@@ -1,4 +1,8 @@
-const navigation = [
+interface INavigation {
+	[key: string]: string
+}
+
+const navigation: INavigation[] = [
 	{ name: "About", href: "#" },
 	{ name: "Jobs", href: "#" },
 	{ name: "Shop", href: "#" },

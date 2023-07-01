@@ -5,14 +5,19 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import { Navigation, Pagination } from "swiper"
 import ProductForm from "./ProductForm"
 import RecommendedList from "./RecommendedList"
+import { IProduct } from "@/types"
 
 import "swiper/swiper.min.css"
 import "swiper/css/navigation"
 import "swiper/css/pagination"
-function ProductContent({ product }: any) {
-	const images: any[] = []
+import { ReactNode } from "react"
 
-	product.images.edges.map((image: any, i: any) => {
+function ProductContent({ product }: { product: IProduct }) {
+	const images: ReactNode[] = []
+
+	console.log(product.images.edges)
+
+	product.images.edges.map((image, i): void => {
 		images.push(
 			<SwiperSlide key={`slide-${i}`}>
 				<Image src={image.node.url} alt={image.node.altText} fill style={{ objectFit: "cover" }}></Image>

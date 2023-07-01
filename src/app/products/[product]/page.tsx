@@ -6,7 +6,7 @@ interface IProductProps {
 }
 
 export default async function Product({ params }: IProductProps) {
-	const product: any | any[] = await getProduct(params.product)
+	const product = await getProduct(params.product)
 	return (
 		<div className="min-h-screen py-12 sm:pt-20">
 			<ProductContent product={product} />

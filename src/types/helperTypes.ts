@@ -6,11 +6,6 @@ interface IEdges<T> {
 	edges: T[]
 }
 
-interface INodeImage {
-	url: string
-	altText: string
-}
-
 interface IOptions {
 	name: string
 	id: string
@@ -25,8 +20,21 @@ interface INode {
 	node: {
 		id: string
 		title: string
-		image: INodeImage
+		image: {
+			url: string
+			altText: string
+		}
 		price: IPrice
 		selectedOptions: INodeOptions[]
 	}
+}
+
+interface ICartWOptions {
+	id: string
+	title: string
+	handle: string
+	image: string
+	variantTitle: string
+	variantPrice: number
+	variantQuantity: number
 }

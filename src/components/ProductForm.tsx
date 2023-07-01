@@ -3,14 +3,14 @@ import ProductOptions from "./ProductOptions"
 import { CartContext } from "@/context/shopContext"
 import { formatter } from "@/utils/helpers"
 
-import { IIteration, IProduct, SelectedOptionsType } from "@/types"
+import { IContext, IIteration, IProduct, SelectedOptionsType } from "@/types"
 
 interface IProductProps {
 	product: IProduct
 }
 
 function ProductForm({ product }: IProductProps) {
-	const { addToCart } = useContext(CartContext)
+	const { addToCart } = useContext(CartContext) as IContext
 
 	const allVariantOptions = product.variants.edges.map(variant => {
 		const allOptions: IIteration = {}

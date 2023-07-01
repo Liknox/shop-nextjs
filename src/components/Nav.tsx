@@ -4,12 +4,13 @@ import Link from "next/link"
 import { useContext } from "react"
 import { CartContext } from "@/context/shopContext"
 import MiniCart from "./MiniCart"
+import { IContext } from "@/types"
 
 function Nav() {
-	const { cart, cartOpen, setCartOpen } = useContext(CartContext)
+	const { cart, cartOpen, setCartOpen } = useContext(CartContext) as IContext
 
-	let cartQuantity = 0
-	cart.map((item: any) => {
+	let cartQuantity: number = 0
+	cart.map(item => {
 		return (cartQuantity += item?.variantQuantity)
 	})
 
@@ -21,7 +22,7 @@ function Nav() {
 						<span className="text-lg pt-1 font-bold">Shopify + Next.js</span>
 					</div>
 				</Link>
-				<div onClick={() => setCartOpen(!cartOpen)} className="text-md font-bold cursor-pointer">
+				<div onClick={(): void => setCartOpen(!cartOpen)} className="text-md font-bold cursor-pointer">
 					Cart ({cartQuantity})
 				</div>
 				<MiniCart cart={cart} />

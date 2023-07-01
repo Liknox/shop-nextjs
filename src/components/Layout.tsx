@@ -1,8 +1,8 @@
-import { ReactNode } from "react"
 import Nav from "./Nav"
 import Footer from "./Footer"
+import { IChildrenProps } from "@/types"
 
-function Layout({ children }: { children: ReactNode }) {
+function Layout({ children }: IChildrenProps) {
 	return (
 		<div className="flex flex-col justify-between min-h-screen">
 			<Nav />

@@ -5,11 +5,12 @@ import Image from "next/image"
 import Link from "next/link"
 import { CartContext } from "@/context/shopContext"
 import { formatter } from "@/utils/helpers"
+import { IContext } from "@/types"
 
 export default function MiniCart({ cart }: any) {
 	const cancelButtonRef = useRef(null)
 
-	const { cartOpen, setCartOpen, checkoutUrl, removeCartItem } = useContext(CartContext)
+	const { cartOpen, setCartOpen, checkoutUrl, removeCartItem } = useContext(CartContext) as IContext
 
 	let cartTotal = 0
 
