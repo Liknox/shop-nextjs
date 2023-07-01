@@ -1,9 +1,18 @@
-function ProductOptions({ name, values, selectedOptions, setOptions }: any) {
+import { IIteration } from "@/types"
+
+interface IProductOptions {
+   name: string
+   values: string[]
+   selectedOptions: IIteration
+   setOptions: (name: string, value: string) => void
+}
+
+function ProductOptions({ name, values, selectedOptions, setOptions }: IProductOptions) {
 	return (
 		<fieldset className="mt-3">
 			<legend className="text-xl font-semibold">{name}</legend>
 			<div className="inline-flex items-center flex-wrap">
-				{values.map((value: any) => {
+				{values.map(value => {
 					const id = `option-${name}-${value}`
 					const checked = selectedOptions[name] === value
 

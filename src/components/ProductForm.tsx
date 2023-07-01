@@ -3,22 +3,17 @@ import ProductOptions from "./ProductOptions"
 import { CartContext } from "@/context/shopContext"
 import { formatter } from "@/utils/helpers"
 
-import { IAllOptions, IAllVariantOptions, IProduct } from "@/types"
+import { IIteration, IProduct, SelectedOptionsType } from "@/types"
 
 interface IProductProps {
 	product: IProduct
 }
 
-interface SelectedOptionsType {
-	name: string
-	value: string
-}
-
 function ProductForm({ product }: IProductProps) {
 	const { addToCart } = useContext(CartContext)
 
-	const allVariantOptions: IAllVariantOptions[] = product.variants.edges.map(variant => {
-		const allOptions: IAllOptions = {}
+	const allVariantOptions = product.variants.edges.map(variant => {
+		const allOptions: IIteration = {}
 
 		const selectedOptions: SelectedOptionsType[] = variant.node.selectedOptions
 
@@ -40,10 +35,8 @@ function ProductForm({ product }: IProductProps) {
 		}
 	})
 
-	console.log(allVariantOptions)
-
-	const defaultValues: any = {}
-	const options: any[] = product.options
+	const defaultValues: IIteration = {}
+	const options = product.options
 	options.map(item => {
 		defaultValues[item.name] = item.values[0]
 	})
@@ -53,12 +46,12 @@ function ProductForm({ product }: IProductProps) {
 
 	if (product.options[0].name === "Size") product.options.reverse()
 
-	function setOptions(name: any, value: any) {
-		setSelectedOptions((prevState: any) => {
+	function setOptions(name: string, value: string) {
+		setSelectedOptions(prevState => {
 			return { ...prevState, [name]: value }
 		})
 
-		const selection = {
+		const selection: IIteration = {
 			...selectedOptions,
 			[name]: value,
 		}

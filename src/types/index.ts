@@ -1,4 +1,9 @@
-export interface IAllOptions {
+export interface SelectedOptionsType {
+	name: string
+	value: string
+}
+
+export interface IIteration {
 	[key: string]: string
 }
 
@@ -13,10 +18,3 @@ export interface IProduct {
 	variants: IEdges<INode>
 }
 
-export interface IAllVariantOptions extends Pick<IProduct, "id" | "title" | "handle"> {
-	image: string
-	options: IAllOptions
-	variantPrice: number
-	variantQuantity: number
-	variantTitle: string
-}
