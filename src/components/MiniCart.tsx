@@ -136,7 +136,9 @@ export default function MiniCart({ cart }: any) {
 														</ul>
 													) : (
 														<div>
-															<p className="text-center text-gray-400">Nothing in your cart!</p>
+															<p className="text-center text-gray-400">
+																Nothing in your cart!
+															</p>
 														</div>
 													)}
 												</div>

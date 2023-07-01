@@ -3,13 +3,24 @@ import ProductOptions from "./ProductOptions"
 import { CartContext } from "@/context/shopContext"
 import { formatter } from "@/utils/helpers"
 
-function ProductForm({ product }: any) {
+import { IAllOptions, IAllVariantOptions, IProduct } from "@/types"
+
+interface IProductProps {
+	product: IProduct
+}
+
+interface SelectedOptionsType {
+	name: string
+	value: string
+}
+
+function ProductForm({ product }: IProductProps) {
 	const { addToCart } = useContext(CartContext)
 
-	const allVariantOptions = (product.variants.edges as any[])?.map(variant => {
-		const allOptions: any = {}
+	const allVariantOptions: IAllVariantOptions[] = product.variants.edges.map(variant => {
+		const allOptions: IAllOptions = {}
 
-		const selectedOptions: any[] = variant.node.selectedOptions
+		const selectedOptions: SelectedOptionsType[] = variant.node.selectedOptions
 
 		selectedOptions.map(item => {
 			allOptions[item.name] = item.value
@@ -28,6 +39,8 @@ function ProductForm({ product }: any) {
 			variantQuantity: 1,
 		}
 	})
+
+	console.log(allVariantOptions)
 
 	const defaultValues: any = {}
 	const options: any[] = product.options
@@ -61,7 +74,7 @@ function ProductForm({ product }: any) {
 		<div className="rounded-2xl p-4 shadow-lg flex flex-col w-full md:w-1/3">
 			<h2 className="text-2xl font-bold">{product.title}</h2>
 			<span className="pb-3">{formatter.format(product.variants.edges[0].node.price.amount)}</span>
-			{(product.options as any[]).map(({ name, values }) => (
+			{product.options.map(({ name, values }) => (
 				<ProductOptions
 					key={`key-${name}`}
 					name={name}

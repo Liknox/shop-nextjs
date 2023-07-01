@@ -35,7 +35,7 @@ function ProductContent({ product }: any) {
 							modules={[Navigation, Pagination]}
 							spaceBetween={0}
 							navigation
-							pagination={{ clickable: true, dynamicBullets: true}}
+							pagination={{ clickable: true, dynamicBullets: true }}
 							slidesPerView={1}
 						>
 							{images}
@@ -44,7 +44,9 @@ function ProductContent({ product }: any) {
 				</div>
 				<ProductForm product={product} />
 			</div>
-			<p className="pt-16 space-y-8 md:space-x-4 lg:space-x-8 max-w-3xl w-11/12 mx-auto text-sm">{product.description}</p>
+			<p className="pt-16 space-y-8 md:space-x-4 lg:space-x-8 max-w-3xl w-11/12 mx-auto text-sm">
+				{product.description}
+			</p>
 			<RecommendedList current={product.id} products={product.collections.edges[0].node.products.edges} />
 		</div>
 	)
