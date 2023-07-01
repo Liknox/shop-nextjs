@@ -3,7 +3,7 @@ import { Metadata } from "next"
 import Layout from "@/components/Layout"
 import ShopProvider from "@/context/shopContext"
 import { IChildrenProps } from "@/types"
-import "./globals.css"
+import "tailwindcss/tailwind.css"
 
 const inter = Inter({ subsets: ["latin"] })
 
