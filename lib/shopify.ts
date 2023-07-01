@@ -1,4 +1,4 @@
-import { IProduct } from "@/types"
+import { ICart, IList, IProduct } from "@/types"
 
 const domain = process.env.SHOPIFY_STORE_DOMAIN
 const storefrontAccessToken = process.env.SHOPIFY_STOREFRONT_ACCESSTOKEN
@@ -25,7 +25,7 @@ async function ShopifyData(query: string) {
 	}
 }
 
-export async function getProductsInCollection() {
+export async function getProductsInCollection(): Promise<IList[]> {
 	const query = `
    {
       collectionByHandle (handle: "frontpage") {
@@ -63,7 +63,7 @@ export async function getProductsInCollection() {
 	return allProducts
 }
 
-export async function getProduct(handle: string): Promise<IProduct | any[]> {
+export async function getProduct(handle: string): Promise<IProduct> {
 	const query = `
    {
       productByHandle(handle: "${handle}") {
@@ -140,7 +140,7 @@ export async function getProduct(handle: string): Promise<IProduct | any[]> {
 	return product
 }
 
-export async function createCheckout(id: any, quantity: any) {
+export async function createCheckout(id: string, quantity: number) {
 	const query = `
    mutation {
       checkoutCreate (input: {
@@ -159,7 +159,7 @@ export async function createCheckout(id: any, quantity: any) {
 	return checkout
 }
 
-export async function updateCheckout(id: any, lineItems: any[]) {
+export async function updateCheckout(id: string, lineItems: ICart[]) {
 	const lineItemsObject = lineItems.map(item => {
 		return `{
          variantId: "${item.id}",

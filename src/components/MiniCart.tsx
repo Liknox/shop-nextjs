@@ -5,16 +5,16 @@ import Image from "next/image"
 import Link from "next/link"
 import { CartContext } from "@/context/shopContext"
 import { formatter } from "@/utils/helpers"
-import { IContext } from "@/types"
+import { ICartProps, IContext } from "@/types"
 
-export default function MiniCart({ cart }: any) {
+export default function MiniCart({ cart }: { cart: ICartProps[] }) {
 	const cancelButtonRef = useRef(null)
 
 	const { cartOpen, setCartOpen, checkoutUrl, removeCartItem } = useContext(CartContext) as IContext
 
 	let cartTotal = 0
 
-	cart.map((item: any) => {
+	cart.map(item => {
 		cartTotal += item?.variantPrice * item?.variantQuantity
 	})
 
@@ -76,7 +76,7 @@ export default function MiniCart({ cart }: any) {
 												<div className="flow-root">
 													{cart.length > 0 ? (
 														<ul role="list" className="-my-6 divide-y divide-gray-200">
-															{cart.map((product: any) => (
+															{cart.map(product => (
 																<li key={product.id} className="flex py-6">
 																	<div className="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
 																		<Image

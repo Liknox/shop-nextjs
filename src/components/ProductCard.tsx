@@ -1,8 +1,13 @@
 import Link from "next/link"
 import Image from "next/image"
 import { formatter } from "@/utils/helpers"
+import { IList } from "@/types"
 
-function ProductCard({ product }: any) {
+interface IProductCard {
+	product: IList
+}
+
+function ProductCard({ product }: IProductCard) {
 	const { title, handle } = product.node
 	const { altText, url } = product.node.images.edges[0].node
 	const price = product.node.priceRange.minVariantPrice.amount

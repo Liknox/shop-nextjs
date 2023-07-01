@@ -8,7 +8,7 @@ function Hero() {
 	return (
 		<div
 			className="mx-auto max-w-7xl px-4 text-center flex items-center justify-items-center -mt-14"
-			style={{ height: "100vh", width: "100vw" }}
+			style={{ height: "100vh", width: "97vw" }}
 		>
 			<div className="m-auto">
 				<h1 className="font-extrabold text-gray-900">

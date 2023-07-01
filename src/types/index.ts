@@ -22,10 +22,41 @@ export interface IProduct {
 	handle: string
 	id: string
 	title: string
-	collections: any
+	collections: ICollections
 	images: IEdges<IImage>
 	options: IOptions[]
 	variants: IEdges<INode>
+}
+
+interface ICollections {
+	edges: {
+		node: {
+			products: {
+				edges: IList[]
+			}
+		}
+	}[]
+}
+
+export interface IListProduct extends Pick<IProduct, "handle" | "id" | "images" | "title"> {
+	priceRange: {
+		minVariantPrice: {
+			amount: number
+		}
+	}
+}
+
+export interface IProductList {
+	products: {
+		node: IListProduct
+	}[]
+}
+export interface IList {
+	node: IListProduct
+}
+
+export interface ICartProps extends ICartWOptions {
+	options: { [key: string]: string }
 }
 
 // HACK: Context file

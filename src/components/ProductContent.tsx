@@ -1,5 +1,6 @@
 "use client"
 
+import { ReactNode } from "react"
 import Image from "next/image"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Navigation, Pagination } from "swiper"
@@ -10,12 +11,15 @@ import { IProduct } from "@/types"
 import "swiper/swiper.min.css"
 import "swiper/css/navigation"
 import "swiper/css/pagination"
-import { ReactNode } from "react"
 
-function ProductContent({ product }: { product: IProduct }) {
+interface IProductContentProps {
+	product: IProduct
+}
+
+function ProductContent({ product }: IProductContentProps) {
 	const images: ReactNode[] = []
 
-	console.log(product.images.edges)
+	console.log(product)
 
 	product.images.edges.map((image, i): void => {
 		images.push(

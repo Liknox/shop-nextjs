@@ -1,8 +1,8 @@
-import { ReactNode } from "react"
 import { Inter } from "next/font/google"
+import { Metadata } from "next"
 import Layout from "@/components/Layout"
 import ShopProvider from "@/context/shopContext"
-import { Metadata } from "next"
+import { IChildrenProps } from "@/types"
 import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -43,9 +43,7 @@ export const metadata: Metadata = {
 	},
 }
 
-type RootLayoutProps = { children: ReactNode }
-
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({ children }: IChildrenProps) {
 	return (
 		<html lang="en">
 			<body className={inter.className}>

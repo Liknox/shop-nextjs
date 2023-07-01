@@ -1,10 +1,10 @@
 import { IIteration } from "@/types"
 
 interface IProductOptionsProps {
-   name: string
-   values: string[]
-   selectedOptions: IIteration
-   setOptions: (name: string, value: string) => void
+	name: string
+	values: string[]
+	selectedOptions: IIteration
+	setOptions: (name: string, value: string) => void
 }
 
 function ProductOptions({ name, values, selectedOptions, setOptions }: IProductOptionsProps) {
