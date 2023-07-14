@@ -5,6 +5,19 @@ function Hero() {
 		window.scrollTo({ top: window.innerHeight, behavior: "smooth" })
 	}
 
+	console.log(
+		`%c
+888       d8b  888                                  
+888       Y8P  888                                  
+888            888                                  
+888       888  888  888  88888b.    .d88b.   888  888 
+888       888  888 .88P  888 "88b  d88""88b  'Y8bd8P' 
+888       888  888888K   888  888  888  888    X88K   
+888       888  888 "88b  888  888  Y88..88P  .d8""8b. 
+88888888  888  888  888  888  888   "Y88P"   888  888`,
+		"font-family:monospace; color: orange;"
+	)
+
 	return (
 		<div
 			className="mx-auto max-w-7xl px-4 text-center flex items-center justify-items-center -mt-14"

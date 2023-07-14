@@ -19,8 +19,6 @@ interface IProductContentProps {
 function ProductContent({ product }: IProductContentProps) {
 	const images: ReactNode[] = []
 
-	console.log(product)
-
 	product.images.edges.map((image, i): void => {
 		images.push(
 			<SwiperSlide key={`slide-${i}`}>
