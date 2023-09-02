@@ -25,16 +25,15 @@ function Hero() {
 		>
 			<div className="m-auto">
 				<h1 className="font-extrabold text-gray-900">
-					<p className="text-xl sm:text-3xl md:text-4xl">Shopify + Next.js + Tailwind</p>
 					<p
 						className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-4xl sm:text-6xl md:text-7xl"
 						style={{ textShadow: "0px 0px 200px rgba(199,108,209)" }}
 					>
-						Modern eCommerce
+						Modern E-Commerce
 					</p>
 				</h1>
 				<h2 className="mt-3 max-w-md mx-auto text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-x-3xl">
-					Build the eCommerce Revolution.
+					Build the E-Commerce Revolution.
 				</h2>
 				<div className="mt-5 max-w-md mx-auto flex justify-center items-center md:mt-8">
 					<button onClick={scrollToCertainPoint}>
